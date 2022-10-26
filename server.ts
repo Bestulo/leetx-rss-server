@@ -7,7 +7,11 @@ const app = new Application();
 app.use(async (ctx) => {
   // url will be like this: example.com/search?query=the+matrix
   const searchedString = ctx.request.url.searchParams.get("query");
-  if (!searchedString) {
+  // parse the query string
+  const parsedSearchedString = searchedString
+    ? decodeURIComponent(searchedString)
+    : null;
+  if (!parsedSearchedString) {
     ctx.response.body =
       "No search query provided; please add ?query=your+search+query to the url";
     // add a 400 status code
@@ -15,14 +19,14 @@ app.use(async (ctx) => {
     return;
   }
   // search it
-  const torrentDetails = await fullSearch(searchedString);
+  const torrentDetails = await fullSearch(parsedSearchedString);
   // convert it to xml
   const xml = leetResultToXml(torrentDetails, {
     baseUrl: "https://bestulo-leetx-rss-server.deno.dev/",
-    queryUrl: `https://bestulo-leetx-rss-server.deno.dev/search?query=${searchedString
+    queryUrl: `https://bestulo-leetx-rss-server.deno.dev/search?query=${parsedSearchedString
       .split(" ")
       .join("+")}`,
-    searchedString,
+    searchedString: parsedSearchedString,
   });
   // set the content type to application/rss+xml
   ctx.response.headers.set("Content-Type", "application/rss+xml");
