@@ -8,6 +8,8 @@ Live Demo: https://bestulo-leetx-rss-server.deno.dev
 
 ### Known limitations
 
+### One page only
+
 It only gets the first page per search result. This is a limitation imposed by https://github.com/Bestulo/leetx
 
 When said module resolves this problem, this one will implement a solution for it. That depends on when I'm motivated to do that, which might be never, so you're welcome to do it yourself.
