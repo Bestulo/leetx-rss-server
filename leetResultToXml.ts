@@ -4,7 +4,16 @@ const searchedString = "The Matrix";
 
 // const torrents = await fullSearch(searchedString);
 
-export default function leetResultToXml(leetResult: TorrentDetails[]) {
+export default function leetResultToXml(
+  leetResult: TorrentDetails[],
+  {
+    baseUrl,
+    queryUrl,
+  }: {
+    baseUrl: string;
+    queryUrl: string;
+  }
+) {
   const time = leetResult[0].time;
 
   // Dec. 22nd '21 to date, grab month, day and year
@@ -28,8 +37,8 @@ export default function leetResultToXml(leetResult: TorrentDetails[]) {
   const xmlStart = `<?xml version="1.0" encoding="UTF-8"?>
 	<feed xmlns="http://www.w3.org/2005/Atom">
 		<title>1337x RSS - ${searchedString}</title>
-		<id>https://besto.me/</id>
-		<link rel="alternate" href="https://besto.me/about-me/"/>
+		<id>${baseUrl}</id>
+		<link rel="alternate" href="${queryUrl}>
 		<link href="https://gist.githubusercontent.com/Bestulo/a3813880eeb77513360ed23a7a2c3950/raw/30622c8b7064fafc6668902fb7930a4c039a0409/1337x-matrix-rss.xml" rel="self"/>
 	
 		<updated>${new Date().toISOString()}</updated>
