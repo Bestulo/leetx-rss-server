@@ -17,7 +17,12 @@ app.use(async (ctx) => {
   // search it
   const torrentDetails = await fullSearch(searchedString);
   // convert it to xml
-  const xml = leetResultToXml(torrentDetails);
+  const xml = leetResultToXml(torrentDetails, {
+    baseUrl: "https://bestulo-leetx-rss-server.deno.dev/",
+    queryUrl: `https://bestulo-leetx-rss-server.deno.dev/search?query=${searchedString
+      .split(" ")
+      .join("+")}`,
+  });
   // set the content type to application/rss+xml
   ctx.response.headers.set("Content-Type", "application/rss+xml");
   // send the xml

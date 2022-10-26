@@ -39,7 +39,7 @@ export default function leetResultToXml(
 		<title>1337x RSS - ${searchedString}</title>
 		<id>${baseUrl}</id>
 		<link rel="alternate" href="${queryUrl}>
-		<link href="https://gist.githubusercontent.com/Bestulo/a3813880eeb77513360ed23a7a2c3950/raw/30622c8b7064fafc6668902fb7930a4c039a0409/1337x-matrix-rss.xml" rel="self"/>
+		<link href="${baseUrl}" rel="self" />
 	
 		<updated>${new Date().toISOString()}</updated>
 		<author>
