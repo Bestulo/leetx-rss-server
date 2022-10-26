@@ -9,7 +9,7 @@ app.use(async (ctx) => {
   const searchedString = ctx.request.url.searchParams.get("query");
   // parse the query string
   const parsedSearchedString = searchedString
-    ? decodeURIComponent(searchedString)
+    ? decodeURIComponent(searchedString).replaceAll("+", " ")
     : null;
   if (!parsedSearchedString) {
     ctx.response.body =
@@ -26,7 +26,11 @@ app.use(async (ctx) => {
     queryUrl: `https://bestulo-leetx-rss-server.deno.dev/search?query=${parsedSearchedString
       .split(" ")
       .join("+")}`,
-    searchedString: parsedSearchedString,
+    // capitalize first letter of each word for the title
+    searchedString: parsedSearchedString
+      .split(" ")
+      .map((word) => word[0].toUpperCase() + word.slice(1))
+      .join(" "),
   });
   // set the content type to application/rss+xml
   ctx.response.headers.set("Content-Type", "application/rss+xml");
