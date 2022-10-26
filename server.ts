@@ -22,6 +22,7 @@ app.use(async (ctx) => {
     queryUrl: `https://bestulo-leetx-rss-server.deno.dev/search?query=${searchedString
       .split(" ")
       .join("+")}`,
+    searchedString,
   });
   // set the content type to application/rss+xml
   ctx.response.headers.set("Content-Type", "application/rss+xml");

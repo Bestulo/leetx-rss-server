@@ -1,6 +1,6 @@
 import { TorrentDetails } from "https://deno.land/x/leetx@v1.0.0/types/TorrentDetails.ts";
 
-const searchedString = "The Matrix";
+// const searchedString = "The Matrix";
 
 // const torrents = await fullSearch(searchedString);
 
@@ -9,9 +9,11 @@ export default function leetResultToXml(
   {
     baseUrl,
     queryUrl,
+    searchedString,
   }: {
     baseUrl: string;
     queryUrl: string;
+    searchedString: string;
   }
 ) {
   const time = leetResult[0].time;
