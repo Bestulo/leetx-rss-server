@@ -38,7 +38,7 @@ export default function leetResultToXml(
 	<feed xmlns="http://www.w3.org/2005/Atom">
 		<title>1337x RSS - ${searchedString}</title>
 		<id>${baseUrl}</id>
-		<link rel="alternate" href="${queryUrl}">
+		<link rel="alternate" href="${queryUrl}" />
 		<link href="${baseUrl}" rel="self" />
 	
 		<updated>${new Date().toISOString()}</updated>
