@@ -51,17 +51,17 @@ export default function leetResultToXml(
 
   const torrentRSSFeed = leetResult.map((torrent) => {
     const xmlFeed = `		<entry>
-				<title>${torrent.name}</title>
-				<link rel="alternate" type="text/html" href="${torrent.url}"/>
-				<id>${torrent.url}</id>
-				<published>${parseDate(time).toISOString()}</published>
-				<updated>${parseDate(time).toISOString()}</updated>
-				<category term="${torrent.category}"/>
-				<content type="html"><![CDATA[${torrent.description?.replaceAll(
-          "\n",
-          ""
-        )}]]></content>
-			</entry>`;
+      <title>${torrent.name}</title>
+      <link rel="alternate" type="text/html" href="${torrent.url}"/>
+      <id>${torrent.url}</id>
+      <published>${parseDate(time).toISOString()}</published>
+      <updated>${parseDate(time).toISOString()}</updated>
+      <category term="${torrent.category}"/>
+      <content type="html"><![CDATA[${torrent.description?.replaceAll(
+        "\n",
+        ""
+      )}]]></content>
+    </entry>`;
     return xmlFeed;
   });
   return new TextEncoder().encode(
